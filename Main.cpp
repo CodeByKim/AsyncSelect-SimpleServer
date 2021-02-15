@@ -10,11 +10,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(lpCmdLine);
 
     StarGameServer server(hInstance, nCmdShow);
+
     if (server.Listen())
     {
         server.Run();
     }
-
-    //Run 부분
-    
 }

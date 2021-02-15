@@ -1,18 +1,18 @@
 #pragma once
 #include "CommonLibrary.h"
+#include "Window.h"
 
-class GameServer
+class GameServer : public Window
 {
 public:
 	GameServer(HINSTANCE hInstance, int nCmdShow);
 	~GameServer();
 
-	bool Listen();
-	void Run();
+	bool Listen();	
 
 protected:
 
 private:
-	HINSTANCE mhInstance;
+	
 };
 

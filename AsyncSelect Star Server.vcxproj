@@ -147,11 +147,13 @@
     <ClInclude Include="GameServer.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="StarGameServer.h" />
+    <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="GameServer.cpp" />
     <ClCompile Include="StarGameServer.cpp" />
+    <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="AsyncSelect Star Server.rc" />
