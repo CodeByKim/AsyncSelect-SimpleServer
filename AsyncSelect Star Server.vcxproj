@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AsyncSelect Star Server.h" />
+    <ClInclude Include="CommonLibrary.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Resource.h" />
   </ItemGroup>
