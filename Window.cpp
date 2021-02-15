@@ -1,4 +1,5 @@
 #include "Window.h"
+#include "Util.h"
 
 Window::Window(HINSTANCE hInstance, int nCmdShow)
     : mhInstance(hInstance)
@@ -6,6 +7,12 @@ Window::Window(HINSTANCE hInstance, int nCmdShow)
     RegisterWindow(hInstance);
 
     Create(nCmdShow);
+
+    WSADATA data;
+    if (WSAStartup(MAKEWORD(2, 2), &data) != 0)
+    {
+        Util::GetInstance().PrintError(L"WSAStartup");
+    }
 }
 
 Window::~Window()

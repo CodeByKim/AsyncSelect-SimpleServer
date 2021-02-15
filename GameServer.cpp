@@ -1,17 +1,15 @@
 #include "GameServer.h"
+#include "Connection.h"
 #include "Util.h"
 
 GameServer::GameServer(HINSTANCE hInstance, int nCmdShow)
     : Window(hInstance, nCmdShow)
 	, mConnections { }
-{
-	WSADATA data;
-	if (WSAStartup(MAKEWORD(2, 2), &data) != 0)
+{		
+	for (int i = 0; i < MAX_CCU; i++)
 	{
-		Util::GetInstance().PrintError(L"WSAStartup");
+		mConnections[i] = std::make_unique<Connection>();
 	}
-
-	mAcceptor.Initialize();
 }
 
 GameServer::~GameServer()

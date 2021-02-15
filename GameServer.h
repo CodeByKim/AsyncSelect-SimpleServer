@@ -18,8 +18,8 @@ protected:
 	virtual void OnDisconnect(Connection* connection) = 0;
 	virtual void OnReceive(Connection* connection) = 0;
 
-private:
-	Connection* mConnections[MAX_CCU];
+private:	
+	std::unique_ptr<Connection> mConnections[MAX_CCU];
 	Acceptor mAcceptor;
 };
 

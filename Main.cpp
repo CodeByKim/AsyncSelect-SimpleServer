@@ -12,7 +12,11 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     StarGameServer server(hInstance, nCmdShow);
 
     if (server.Listen())
-    {
+    {        
         server.Run();
+    }
+    else
+    {
+        MessageBox(NULL, L"Can't Execute Server...", L"ERROR", 0);
     }
 }
