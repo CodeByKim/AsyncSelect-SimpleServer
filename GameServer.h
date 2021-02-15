@@ -2,6 +2,7 @@
 #include "CommonLibrary.h"
 #include "Window.h"
 #include "Acceptor.h"
+#include "ConnectionPool.h"
 
 class Connection;
 
@@ -12,6 +13,7 @@ public:
 	~GameServer();
 
 	bool Listen();	
+	void Run() override;	
 
 protected:
 	virtual void OnConnect(Connection* connection) = 0;
@@ -19,7 +21,9 @@ protected:
 	virtual void OnReceive(Connection* connection) = 0;
 
 private:	
-	std::unique_ptr<Connection> mConnections[MAX_CCU];
-	Acceptor mAcceptor;
-};
+	void ProcessMessage(WPARAM wParam, LPARAM lParam);
 
+	ConnectionPool mConnectionPool;
+	Acceptor mAcceptor;
+	std::vector<Connection*> mConnections;		//활성화된 커넥션 모임
+};

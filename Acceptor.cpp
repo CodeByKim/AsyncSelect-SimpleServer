@@ -1,5 +1,6 @@
 #include "Acceptor.h"
 #include "Util.h"
+#include "Window.h"
 
 Acceptor::Acceptor()	 
 {	
@@ -32,4 +33,10 @@ bool Acceptor::Listen()
 	}
 
 	return true;
+}
+
+void Acceptor::StartAccept()
+{	
+	WSAAsyncSelect(mListenSocket.GetSocketHandle(),
+		Window::GetWindowHandle(), UM_SOCKET, FD_ACCEPT);
 }

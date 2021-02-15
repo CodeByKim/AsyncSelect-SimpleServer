@@ -8,6 +8,9 @@ public:
 	Connection();
 	~Connection();
 
+	void Initialize();
+	void Release();
+
 private:
 	Socket mSocket;
 };

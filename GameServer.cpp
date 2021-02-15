@@ -4,12 +4,10 @@
 
 GameServer::GameServer(HINSTANCE hInstance, int nCmdShow)
     : Window(hInstance, nCmdShow)
-	, mConnections { }
+	, mConnectionPool(MAX_CCU)
+	, mConnections {}
 {		
-	for (int i = 0; i < MAX_CCU; i++)
-	{
-		mConnections[i] = std::make_unique<Connection>();
-	}
+	
 }
 
 GameServer::~GameServer()
@@ -20,4 +18,21 @@ GameServer::~GameServer()
 bool GameServer::Listen()
 {	
 	return mAcceptor.Listen();
+}
+
+void GameServer::Run()
+{
+	mAcceptor.StartAccept();
+	RegisterUserMessage(std::bind(&GameServer::ProcessMessage, this, std::placeholders::_1, std::placeholders::_2));
+	
+	Window::Run();
+}
+
+void GameServer::ProcessMessage(WPARAM wParam, LPARAM lParam)
+{
+	switch (WSAGETSELECTEVENT(lParam))
+	{
+	case FD_ACCEPT:
+		Util::GetInstance().PrintLog(L"Accept New Client!!!!!!");
+	}
 }

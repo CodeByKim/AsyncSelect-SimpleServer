@@ -8,7 +8,12 @@ public:
 	Window(HINSTANCE hInstance, int nCmdShow);
 	~Window();
 
-	void Run();
+	virtual void Run();
+	static HWND GetWindowHandle();
+
+protected:
+	static void RegisterUserMessage(std::function<void(WPARAM, LPARAM)> func);
+	
 
 private:
 	void RegisterWindow(HINSTANCE hInstance);
@@ -16,6 +21,6 @@ private:
 	static LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 	
 	HINSTANCE mhInstance;
-	HWND mhWnd;
+	static HWND mhWnd;
+	static std::function<void(WPARAM, LPARAM)> mUserMessageFunc;
 };
-

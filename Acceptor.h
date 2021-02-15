@@ -9,6 +9,7 @@ public:
 	~Acceptor();
 	
 	bool Listen();
+	void StartAccept();
 
 private:	
 	Socket mListenSocket;	

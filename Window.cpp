@@ -1,6 +1,9 @@
 #include "Window.h"
 #include "Util.h"
 
+HWND Window::mhWnd;
+std::function<void(WPARAM, LPARAM)> Window::mUserMessageFunc;
+
 Window::Window(HINSTANCE hInstance, int nCmdShow)
     : mhInstance(hInstance)
 {
@@ -62,14 +65,12 @@ void Window::Run()
 
 LRESULT CALLBACK Window::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-    //if (message == UM_NETWORK)
-    //{
-    //    //家南 贸府 窍绊..
-    //    return;
-    //}
-
     switch (message)
     {
+    case UM_SOCKET:
+        mUserMessageFunc(wParam, lParam);
+        break;
+
     case WM_PAINT:
     {
         PAINTSTRUCT ps;
@@ -84,4 +85,14 @@ LRESULT CALLBACK Window::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM 
         return DefWindowProc(hWnd, message, wParam, lParam);
     }
     return 0;
+}
+
+HWND Window::GetWindowHandle()
+{
+    return Window::mhWnd;
+}
+
+void Window::RegisterUserMessage(std::function<void(WPARAM, LPARAM)> func)
+{
+    mUserMessageFunc = func;    
 }
