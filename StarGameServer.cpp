@@ -10,3 +10,18 @@ StarGameServer::~StarGameServer()
 {
 
 }
+
+void StarGameServer::OnConnect(Connection* connection)
+{
+
+}
+
+void StarGameServer::OnDisconnect(Connection* connection)
+{
+
+}
+
+void StarGameServer::OnReceive(Connection* connection)
+{
+
+}

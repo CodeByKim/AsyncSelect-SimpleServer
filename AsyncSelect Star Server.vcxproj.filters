@@ -36,6 +36,15 @@
     <ClInclude Include="Window.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Connection.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Acceptor.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Util.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameServer.cpp">
@@ -48,6 +57,15 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Window.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Connection.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Acceptor.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Util.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

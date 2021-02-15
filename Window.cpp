@@ -3,7 +3,7 @@
 Window::Window(HINSTANCE hInstance, int nCmdShow)
     : mhInstance(hInstance)
 {
-    RegisterClass(hInstance);
+    RegisterWindow(hInstance);
 
     Create(nCmdShow);
 }
@@ -13,7 +13,7 @@ Window::~Window()
 
 }
 
-void Window::RegisterClass(HINSTANCE hInstance)
+void Window::RegisterWindow(HINSTANCE hInstance)
 {
     WNDCLASSEXW wcex;
 
@@ -45,7 +45,7 @@ void Window::Create(int nCmdShow)
 
 void Window::Run()
 {
-    MSG msg;
+    MSG msg;    
     while (GetMessage(&msg, nullptr, 0, 0))
     {
         TranslateMessage(&msg);

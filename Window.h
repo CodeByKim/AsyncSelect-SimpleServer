@@ -11,7 +11,7 @@ public:
 	void Run();
 
 private:
-	void RegisterClass(HINSTANCE hInstance);
+	void RegisterWindow(HINSTANCE hInstance);
 	void Create(int nCmdShow);
 	static LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 	
