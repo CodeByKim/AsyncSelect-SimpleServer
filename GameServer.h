@@ -26,7 +26,6 @@ private:
 	void Receive(SOCKET sock);
 
 	ConnectionPool mConnectionPool;
-	Acceptor mAcceptor;
-	//std::vector<Connection*> mConnections;		//활성화된 커넥션 모임
+	Acceptor mAcceptor;	
 	std::unordered_map<SOCKET, Connection*> mConnections;
 };

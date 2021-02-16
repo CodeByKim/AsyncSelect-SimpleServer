@@ -29,10 +29,10 @@ CreateStarPacket::~CreateStarPacket()
 
 void CreateStarPacket::Deserialize(char* buffer)
 {
-	CopyMemory(buffer + 0, &header.protocol, 4);
-	CopyMemory(buffer + 4, &id, 4);
-	CopyMemory(buffer + 8, &x, 4);
-	CopyMemory(buffer + 12, &y, 4);
+	CopyMemory(&header.protocol, buffer + 0, 4);
+	CopyMemory(&id, buffer + 4, 4);
+	CopyMemory(&x, buffer, 8);
+	CopyMemory(&y, buffer + 12, 4);
 }
 
 RemoveStarPacket::RemoveStarPacket()
@@ -47,8 +47,8 @@ RemoveStarPacket::~RemoveStarPacket()
 
 void RemoveStarPacket::Deserialize(char* buffer)
 {
-	CopyMemory(buffer + 0, &header.protocol, 4);
-	CopyMemory(buffer + 4, &id, 4);
+	CopyMemory(&header.protocol, buffer, 4);
+	CopyMemory(&id, buffer + 4, 4);
 }
 
 MoveStarPacket::MoveStarPacket()
@@ -63,8 +63,8 @@ MoveStarPacket::~MoveStarPacket()
 
 void MoveStarPacket::Deserialize(char* buffer)
 {
-	CopyMemory(buffer + 0, &header.protocol, 4);
-	CopyMemory(buffer + 4, &id, 4);
-	CopyMemory(buffer + 8, &x, 4);
-	CopyMemory(buffer + 12, &y, 4);
+	CopyMemory(&header.protocol, buffer + 0, 4);
+	CopyMemory(&id, buffer + 4, 4);
+	CopyMemory(&x, buffer, 8);
+	CopyMemory(&y, buffer + 12, 4);
 }
