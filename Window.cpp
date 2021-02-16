@@ -2,7 +2,7 @@
 #include "Util.h"
 
 HWND Window::mhWnd;
-std::function<void(WPARAM, LPARAM)> Window::mUserMessageFunc;
+std::unordered_map<int, std::function<void(SOCKET)>> Window::mUserMessageFuncs;
 
 Window::Window(HINSTANCE hInstance, int nCmdShow)
     : mhInstance(hInstance)
@@ -68,9 +68,14 @@ LRESULT CALLBACK Window::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM 
     switch (message)
     {
     case UM_SOCKET:
-        mUserMessageFunc(wParam, lParam);
-        break;
-
+    {
+        int msg = WSAGETSELECTEVENT(lParam);
+        if (mUserMessageFuncs.find(msg) != mUserMessageFuncs.end())
+        {
+            mUserMessageFuncs[msg](wParam);
+        }        
+    }   
+    break;
     case WM_PAINT:
     {
         PAINTSTRUCT ps;
@@ -92,7 +97,7 @@ HWND Window::GetWindowHandle()
     return Window::mhWnd;
 }
 
-void Window::RegisterUserMessage(std::function<void(WPARAM, LPARAM)> func)
+void Window::RegisterUserMessage(int message, std::function<void(SOCKET)> func)
 {
-    mUserMessageFunc = func;    
+    mUserMessageFuncs.insert(std::make_pair(message, func));
 }

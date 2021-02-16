@@ -9,6 +9,7 @@ public:
 	~Socket();
 
 	bool Create();
+	bool Create(SOCKET sock, SOCKADDR_IN addr);
 	bool Bind(const char* ip, unsigned short port);
 	bool Listen();
 	

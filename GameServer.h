@@ -22,6 +22,8 @@ protected:
 
 private:	
 	void ProcessMessage(WPARAM wParam, LPARAM lParam);
+	void AcceptNewConnection(SOCKET sock);
+	void Receive(SOCKET sock);
 
 	ConnectionPool mConnectionPool;
 	Acceptor mAcceptor;

@@ -24,6 +24,14 @@ bool Socket::Create()
 	return true;
 }
 
+bool Socket::Create(SOCKET sock, SOCKADDR_IN addr)
+{
+	mSocket = sock;
+	mAddr = addr;
+
+	return true;
+}
+
 bool Socket::Bind(const char* ip, unsigned short port)
 {
 	mAddr.sin_family = AF_INET;

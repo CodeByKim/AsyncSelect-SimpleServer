@@ -2,15 +2,20 @@
 #include "CommonLibrary.h"
 #include "Socket.h"
 
+class Connection;
+class ConnectionPool;
+
 class Acceptor
 {
 public:
-	Acceptor();
+	Acceptor(ConnectionPool& pool);
 	~Acceptor();
 	
 	bool Listen();
 	void StartAccept();
 
+	Connection* Accept();
 private:	
+	ConnectionPool& mPool;
 	Socket mListenSocket;	
 };

@@ -1,8 +1,11 @@
 #include "Acceptor.h"
 #include "Util.h"
 #include "Window.h"
+#include "ConnectionPool.h"
+#include "Connection.h"
 
-Acceptor::Acceptor()	 
+Acceptor::Acceptor(ConnectionPool& pool)
+	: mPool(pool)
 {	
 	if (!mListenSocket.Create())
 	{
@@ -39,4 +42,16 @@ void Acceptor::StartAccept()
 {	
 	WSAAsyncSelect(mListenSocket.GetSocketHandle(),
 		Window::GetWindowHandle(), UM_SOCKET, FD_ACCEPT);
+}
+
+Connection* Acceptor::Accept()
+{
+	SOCKADDR_IN addr = { 0, };
+	int addrSize = sizeof(addr);
+	SOCKET clientSocket = accept(mListenSocket.GetSocketHandle(), (SOCKADDR*)&addr, &addrSize);
+
+	Connection* connection = mPool.Pop();
+	connection->Initialize(clientSocket, addr);
+	
+	return connection;
 }

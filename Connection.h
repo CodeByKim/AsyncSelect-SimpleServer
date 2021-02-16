@@ -8,7 +8,7 @@ public:
 	Connection();
 	~Connection();
 
-	void Initialize();
+	void Initialize(SOCKET sock, SOCKADDR_IN addr);
 	void Release();
 
 private:

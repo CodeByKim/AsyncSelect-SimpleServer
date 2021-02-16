@@ -12,7 +12,7 @@ public:
 	static HWND GetWindowHandle();
 
 protected:
-	static void RegisterUserMessage(std::function<void(WPARAM, LPARAM)> func);
+	static void RegisterUserMessage(int message, std::function<void(SOCKET)> func);
 	
 
 private:
@@ -22,5 +22,6 @@ private:
 	
 	HINSTANCE mhInstance;
 	static HWND mhWnd;
-	static std::function<void(WPARAM, LPARAM)> mUserMessageFunc;
+	//static std::function<void(WPARAM, LPARAM)> mUserMessageFunc;
+	static std::unordered_map<int, std::function<void(SOCKET)>> mUserMessageFuncs;
 };
