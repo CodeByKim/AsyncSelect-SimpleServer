@@ -19,7 +19,8 @@ struct PacketHeader
 class Packet
 {
 public:
-	virtual void Deserialize(char* buffer) = 0;
+	virtual void Serialize(char* outBuffer) = 0;
+	virtual void Deserialize(char* buffer) = 0;	
 
 	PacketHeader header;
 };
@@ -30,6 +31,7 @@ public:
 	AssignIdPacket();
 	~AssignIdPacket();
 
+	void Serialize(char* outBuffer) override;
 	void Deserialize(char* buffer) override;
 
 	int id;
@@ -41,6 +43,7 @@ public:
 	CreateStarPacket();
 	~CreateStarPacket();
 
+	void Serialize(char* outBuffer) override;
 	void Deserialize(char* buffer) override;
 
 	int id;
@@ -54,6 +57,7 @@ public:
 	RemoveStarPacket();
 	~RemoveStarPacket();
 
+	void Serialize(char* outBuffer) override;
 	void Deserialize(char* buffer) override;
 
 	int id;
@@ -65,6 +69,7 @@ public:
 	MoveStarPacket();
 	~MoveStarPacket();
 
+	void Serialize(char* outBuffer) override;
 	void Deserialize(char* buffer) override;
 
 	int id;

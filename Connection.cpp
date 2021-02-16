@@ -38,6 +38,14 @@ int Connection::Receive()
 	return recvSize;
 }
 
+void Connection::SendPacket(Packet* packet)
+{
+	char buffer[BUFFER_SIZE];	
+	packet->Serialize(buffer);
+
+	mSocket.Send(buffer, PACKET_SIZE);
+}
+
 bool Connection::GetPacket(std::queue<std::shared_ptr<Packet>>* packetQueue)
 {	
 	while (true)

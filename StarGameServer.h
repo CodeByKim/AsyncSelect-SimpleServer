@@ -16,4 +16,6 @@ protected:
 
 private:
 	std::vector<Connection*> mConnections;
+
+	int mID;
 };

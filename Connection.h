@@ -15,6 +15,7 @@ public:
 	void Release();
 
 	int Receive();	
+	void SendPacket(Packet* packet);
 	bool GetPacket(std::queue<std::shared_ptr<Packet>>* packetQueue);
 
 	SOCKET GetSocketHandle();
