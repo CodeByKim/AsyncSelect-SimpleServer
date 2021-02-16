@@ -22,6 +22,7 @@
 #define SERVER_IP "127.0.0.1"
 #define WINDOWCLASS_NAME L"GameServer"
 
+#define BUFFER_SIZE 1024
 #define PACKET_SIZE 16
 #define MAX_CCU 10
 

@@ -148,7 +148,9 @@
     <ClInclude Include="ConnectionPool.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="GameServer.h" />
+    <ClInclude Include="Packet.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="RingBuffer.h" />
     <ClInclude Include="Socket.h" />
     <ClInclude Include="StarGameServer.h" />
     <ClInclude Include="Util.h" />
@@ -160,6 +162,8 @@
     <ClCompile Include="ConnectionPool.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="GameServer.cpp" />
+    <ClCompile Include="Packet.cpp" />
+    <ClCompile Include="RingBuffer.cpp" />
     <ClCompile Include="Socket.cpp" />
     <ClCompile Include="StarGameServer.cpp" />
     <ClCompile Include="Util.cpp" />

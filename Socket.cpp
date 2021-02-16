@@ -3,7 +3,7 @@
 
 Socket::Socket()
 	: mSocket(INVALID_SOCKET)
-	, mAddr {0, }
+	, mAddr {0, }	
 {	
 }
 
@@ -56,9 +56,9 @@ bool Socket::Listen()
 	return true;
 }
 
-int Socket::Receive(char* buffer)
+int Socket::Receive(char* buffer, int size)
 {
-	return recv(mSocket, buffer, 1024, 0);
+	return recv(mSocket, buffer, size, 0);
 }
 
 int Socket::Send(char* buffer, int size)

@@ -1,6 +1,7 @@
 #include "GameServer.h"
 #include "Connection.h"
 #include "Util.h"
+#include "Packet.h"
 
 GameServer::GameServer(HINSTANCE hInstance, int nCmdShow)
     : Window(hInstance, nCmdShow)
@@ -42,16 +43,23 @@ void GameServer::AcceptNewConnection(SOCKET sock)
 void GameServer::Receive(SOCKET sock)
 {	
 	Connection* connection = mConnections[sock];
+	int recvSize = connection->Receive();
 
-	//이 부분에서 링버퍼에 데이터 넣고
-	//패킷으로 만들어서 위 계층에 전달해야 함
+	if (recvSize > 0)
+	{
+		std::queue<std::shared_ptr<Packet>> packetQueue;
+		connection->GetPacket(&packetQueue);
 
-	char buffer[1024];
-	int recvSize = connection->Receive(buffer);
-	buffer[recvSize] = '\0';
-	
-	char str[256];
-	sprintf_s(str, "%d : %s\n", connection->GetSocketHandle(), buffer);
-	OutputDebugStringA(str);
-	connection->Send(buffer, recvSize);
+		while (!packetQueue.empty())
+		{
+			auto packet = packetQueue.front();
+			packetQueue.pop();
+
+			OnReceive(connection, packet.get());
+		}
+	}
+	else
+	{
+		OnDisconnect(connection);
+	}	
 }

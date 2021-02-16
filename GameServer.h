@@ -5,6 +5,7 @@
 #include "ConnectionPool.h"
 
 class Connection;
+class Packet;
 
 class GameServer : public Window
 {
@@ -18,7 +19,7 @@ public:
 protected:
 	virtual void OnConnect(Connection* connection) = 0;
 	virtual void OnDisconnect(Connection* connection) = 0;
-	virtual void OnReceive(Connection* connection) = 0;
+	virtual void OnReceive(Connection* connection, Packet* packet) = 0;
 
 private:		
 	void AcceptNewConnection(SOCKET sock);

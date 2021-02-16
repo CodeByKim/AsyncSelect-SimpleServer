@@ -1,6 +1,9 @@
 #pragma once
+
 #include "CommonLibrary.h"
 #include "Socket.h"
+
+class Packet;
 
 class Connection
 {
@@ -11,11 +14,14 @@ public:
 	void Initialize(SOCKET sock, SOCKADDR_IN addr);
 	void Release();
 
-	int Receive(char* buffer);
-	int Send(char* buffer, int size);
+	int Receive();	
+	bool GetPacket(std::queue<std::shared_ptr<Packet>>* packetQueue);
 
 	SOCKET GetSocketHandle();
+
 private:
+	RingBuffer mRecvBuffer;
+	RingBuffer mSendBuffer;
+
 	Socket mSocket;
 };
-
