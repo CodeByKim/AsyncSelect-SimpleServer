@@ -5,8 +5,9 @@
 class Util
 {
 public:
-	void PrintError(const wchar_t* error);
-	void PrintLog(const wchar_t* log);
+	void PrintError(const wchar_t* message);
+	void PrintLog(const wchar_t* message);
+	void PrintLog(const wchar_t* title, const wchar_t* message);
 
 	static Util& GetInstance();
 };

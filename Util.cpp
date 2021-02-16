@@ -6,18 +6,26 @@ Util& Util::GetInstance()
 	return instance;
 }
 
-void Util::PrintError(const wchar_t* error)
+void Util::PrintError(const wchar_t* message)
 {
 	wchar_t str[256];
-	wsprintf(str, L"[ERROR] %s : %d\n", error, WSAGetLastError());
+	wsprintf(str, L"[ERROR] %s : %d\n", message, WSAGetLastError());
 
 	OutputDebugString(str);	
 }
 
-void Util::PrintLog(const wchar_t* log)
+void Util::PrintLog(const wchar_t* message)
 {	
 	wchar_t str[256];
-	wsprintf(str, L"[LOG] %s\n", log);
+	wsprintf(str, L"[LOG] %s\n", message);
+
+	OutputDebugString(str);
+}
+
+void Util::PrintLog(const wchar_t* title, const wchar_t* message)
+{
+	wchar_t str[256];
+	wsprintf(str, L"[LOG] %s : %s\n", title, message);
 
 	OutputDebugString(str);
 }

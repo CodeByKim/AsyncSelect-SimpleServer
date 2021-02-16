@@ -14,10 +14,7 @@ StarGameServer::~StarGameServer()
 
 void StarGameServer::OnConnect(Connection* connection)
 {
-	if (connection != nullptr)
-	{
-		Util::GetInstance().PrintLog(L"Good...");
-	}
+	Util::GetInstance().PrintLog(L"OnConnect...");
 }
 
 void StarGameServer::OnDisconnect(Connection* connection)
@@ -27,5 +24,5 @@ void StarGameServer::OnDisconnect(Connection* connection)
 
 void StarGameServer::OnReceive(Connection* connection)
 {
-
+	Util::GetInstance().PrintLog(L"OnReceive...");
 }

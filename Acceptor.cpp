@@ -38,7 +38,7 @@ bool Acceptor::Listen()
 	return true;
 }
 
-void Acceptor::StartAccept()
+void Acceptor::Run()
 {	
 	WSAAsyncSelect(mListenSocket.GetSocketHandle(),
 		Window::GetWindowHandle(), UM_SOCKET, FD_ACCEPT);
@@ -48,10 +48,14 @@ Connection* Acceptor::Accept()
 {
 	SOCKADDR_IN addr = { 0, };
 	int addrSize = sizeof(addr);
-	SOCKET clientSocket = accept(mListenSocket.GetSocketHandle(), (SOCKADDR*)&addr, &addrSize);
-
+	SOCKET clientSocket = accept(mListenSocket.GetSocketHandle(), 
+		(SOCKADDR*)&addr, &addrSize);
+	
 	Connection* connection = mPool.Pop();
 	connection->Initialize(clientSocket, addr);
-	
+
+	WSAAsyncSelect(clientSocket, Window::GetWindowHandle(), 
+		UM_SOCKET, FD_READ | FD_WRITE | FD_CLOSE);
+
 	return connection;
 }

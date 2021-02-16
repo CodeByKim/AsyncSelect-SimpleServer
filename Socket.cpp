@@ -56,6 +56,16 @@ bool Socket::Listen()
 	return true;
 }
 
+int Socket::Receive(char* buffer)
+{
+	return recv(mSocket, buffer, 1024, 0);
+}
+
+int Socket::Send(char* buffer, int size)
+{
+	return send(mSocket, buffer, size, 0);
+}
+
 void Socket::SetNonblocking()
 {
 	u_long on = 1;

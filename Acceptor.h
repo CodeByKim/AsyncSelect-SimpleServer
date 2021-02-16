@@ -12,7 +12,7 @@ public:
 	~Acceptor();
 	
 	bool Listen();
-	void StartAccept();
+	void Run();
 
 	Connection* Accept();
 private:	
